@@ -1,0 +1,101 @@
+{
+  "prompt": "A detective investigates a mysterious disappearance in a rain-soaked city",
+  "phase1": {
+    "title": "Crimson Rain",
+    "scenes": [
+      {
+        "scene_id": 1,
+        "location": "INT. DETECTIVE BLACKWOOD'S OFFICE - NIGHT",
+        "characters": [
+          "DETECTIVE REX BLACKWOOD",
+          "ANNA REID"
+        ],
+        "dialogue": [
+          {
+            "speaker": "ANNA REID",
+            "line": "She just... vanished, Detective. No note, no call. Just gone.",
+            "visual_cue": "Close up on Anna's tear-streaked face, the neon glow of a bar sign reflecting in her eyes."
+          },
+          {
+            "speaker": "DETECTIVE REX BLACKWOOD",
+            "line": "Your sister, Elara. When did you last see her?",
+            "visual_cue": "Rex Blackwood, a trench coat draped over his chair, leans forward, the harsh office light illuminating the weary lines on his face."
+          },
+          {
+            "speaker": "ANNA REID",
+            "line": "Three nights ago. She was supposed to meet me for dinner, but she never showed. The rain started that night, and it hasn't stopped.",
+            "visual_cue": "Rain lashes relentlessly against the frosted window behind Rex, obscuring the city lights."
+          }
+        ],
+        "action_description": "Detective Rex Blackwood sits in his dimly lit office, the constant drumming of rain against the window providing a melancholic soundtrack. Anna Reid, a distraught young woman, recounts the mysterious disappearance of her sister, Elara. Rex sifts through a meager file, his gaze sharp and weary."
+      },
+      {
+        "scene_id": 2,
+        "location": "INT. ELARA REID'S APARTMENT - NIGHT",
+        "characters": [
+          "DETECTIVE REX BLACKWOOD",
+          "OFFICER MILLER"
+        ],
+        "dialogue": [
+          {
+            "speaker": "OFFICER MILLER",
+            "line": "No forced entry, Detective. Everything seems in order, if a little... sparse.",
+            "visual_cue": "Officer Miller gestures around the tidy but minimalist apartment, rain audibly dripping from a leaky pipe outside."
+          },
+          {
+            "speaker": "DETECTIVE REX BLACKWOOD",
+            "line": "Too in order. A ghost could live here.",
+            "visual_cue": "Rex runs a gloved hand along a bookshelf, dust gathering on his fingertip, contrasting with the 'cleanliness'."
+          },
+          {
+            "speaker": "DETECTIVE REX BLACKWOOD",
+            "line": "What about these? Letters? Notes?",
+            "visual_cue": "Rex pulls a small, water-damaged stack of envelopes from behind a loose floorboard. His expression hardens as he sees faint, smeared writing."
+          }
+        ],
+        "action_description": "Rex meticulously searches Elara Reid's apartment, a stark contrast to the chaotic weather outside. Officer Miller, a younger, less experienced cop, observes. Rex's keen eye picks up on subtle inconsistencies. He finds a hidden compartment containing a few damp, almost illegible letters, the paper slightly swollen from moisture. The apartment itself feels sterile, devoid of personal touches, intensifying the mystery."
+      },
+      {
+        "scene_id": 3,
+        "location": "INT. THE 'BLUE NOTE' JAZZ CLUB - NIGHT",
+        "characters": [
+          "DETECTIVE REX BLACKWOOD",
+          "MARCUS"
+        ],
+        "dialogue": [
+          {
+            "speaker": "DETECTIVE REX BLACKWOOD",
+            "line": "I'm looking for Elara Reid. She was seen here a few nights ago. Tall, dark hair, quiet type.",
+            "visual_cue": "Rex holds up a photo of Elara. The dim, smoky light of the club casts long shadows on the patrons."
+          },
+          {
+            "speaker": "MARCUS",
+            "line": "Lots of quiet types come through here, pal. Especially when the rain's this bad.",
+            "visual_cue": "Marcus, the gruff bartender, wipes down the counter with a practiced, slow motion, avoiding eye contact."
+          },
+          {
+            "speaker": "DETECTIVE REX BLACKWOOD",
+            "line": "She left this behind. Recognize the writing?",
+            "visual_cue": "Rex slides one of the damp, almost ruined letters across the polished bar. The light catches the faint, smudged ink."
+          },
+          {
+            "speaker": "MARCUS",
+            "line": "(Whispering) She was meeting someone... always by the back alley door. Said something about 'the pier' and 'a package'.",
+            "visual_cue": "Marcus's eyes flicker to the letter, then nervously to the club's back entrance. The sound of a saxophone wails mournfully in the background, momentarily overpowering the rain."
+          }
+        ],
+        "action_description": "Rex enters 'The Blue Note,' a seedy jazz club where Elara was last seen. The air is thick with cigarette smoke and the soulful wail of a saxophone. He approaches Marcus, the bartender, who is initially evasive. Rex presses him, showing him one of the water-damaged letters. Marcus, recognizing something, eventually divulges a crucial piece of information about Elara meeting someone at the back alley and mentioning a pier."
+      }
+    ]
+  },
+  "phase2": {
+    "raw_scenes": [
+      "raw_scenes\\scene_01.mp4",
+      "raw_scenes\\scene_02.mp4",
+      "raw_scenes\\scene_03.mp4"
+    ]
+  },
+  "phase3": {
+    "final_video": "outputs/final_output.mp4"
+  }
+}

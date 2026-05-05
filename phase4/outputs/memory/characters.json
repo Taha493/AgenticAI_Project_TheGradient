@@ -1,0 +1,74 @@
+{
+  "character_db": {
+    "characters": [
+      {
+        "id": "bartender",
+        "name": "BARTENDER",
+        "personality_traits": [
+          "Observant",
+          "World-weary",
+          "Stoic",
+          "Laconic"
+        ],
+        "appearance": "A man in his late 50s to early 60s, with a sturdy but slightly gaunt build. His salt-and-pepper hair is thinning at the temples and often appears a bit disheveled, though he makes no effort to slick it back. His face is a roadmap of late nights and quiet observation, deeply etched with lines around tired, knowing eyes that miss nothing. He possesses a permanent, subtle frown, suggesting a man who's seen too much. He wears a perpetually slightly rumpled white shirt with the sleeves rolled up, a dark, stained waistcoat that seems to have absorbed decades of barroom woes, and a loosened, ink-stained tie. A damp, stained bar towel is almost always slung over his shoulder, and his hands are large, calloused, and capable from years of pouring drinks and wiping down counters.",
+        "voice_profile": {
+          "tone": "Calm, gravelly, measured, with a hint of fatigue",
+          "accent": "American (classic mid-Atlantic noir drawl)",
+          "edge_tts_voice": "en-US-RogerNeural"
+        },
+        "reference_style": "cinematic portrait, film noir aesthetic, high contrast, low key lighting, shadowy, atmospheric, gritty textures"
+      },
+      {
+        "id": "detective_kane",
+        "name": "DETECTIVE KANE",
+        "personality_traits": [
+          "Cynical",
+          "World-weary",
+          "Observant",
+          "Persistent",
+          "Morally Complex"
+        ],
+        "appearance": "A man in his late 40s or early 50s with a rugged, angular face, etched with the lines of too many sleepless nights and grim discoveries. His dark, deep-set eyes are sharp but carry a profound weariness, often shadowed by his heavy brow. A perpetually five o'clock shadow clings to his jawline. He wears a classic, slightly damp, dark charcoal trench coat with the collar turned up, and a worn, felt fedora pulled low, obscuring part of his face. His hair, dark and slicked back, is slightly disheveled from the rain. He has a lean, capable build, not overtly muscular but suggesting strength and resilience. His attire is functional but rumpled, reflecting the harshness of his profession and the relentless weather.",
+        "voice_profile": {
+          "tone": "Gravelly, somber, with a world-weary resonance and a hint of a deliberate, slow cadence.",
+          "accent": "Mid-Atlantic American",
+          "edge_tts_voice": "en-US-BrianNeural"
+        },
+        "reference_style": "cinematic portrait"
+      },
+      {
+        "id": "mrs._elara_vance",
+        "name": "MRS. ELARA VANCE",
+        "personality_traits": [
+          "Mysterious",
+          "Sophisticated",
+          "Guarded"
+        ],
+        "appearance": "A woman in her late 40s to early 50s, with a slender, graceful figure. Her dark, meticulously styled hair, perhaps in soft waves or an elegant chignon, frames a face of classic, refined beauty. She possesses high cheekbones and a defined jawline, with cool, observant eyes (e.g., steel grey or deep sapphire) that hint at intelligence and hidden depths. Her lips are often set in an enigmatic, subtle curve. She dresses immaculately in sophisticated, tailored garments typical of 1940s/50s noir \u2014 a dark, form-fitting silk dress or a sharp pantsuit, adorned with subtle but expensive jewelry like a single strand of pearls or a tasteful brooch. Her presence exudes an aura of quiet authority and alluring mystery.",
+        "voice_profile": {
+          "tone": "Calm and measured, with an underlying sultriness",
+          "accent": "Standard American, polished",
+          "edge_tts_voice": "en-US-AriaNeural"
+        },
+        "reference_style": "cinematic portrait"
+      },
+      {
+        "id": "officer_jenkins",
+        "name": "OFFICER JENKINS",
+        "personality_traits": [
+          "observant",
+          "professional",
+          "world-weary",
+          "stoic"
+        ],
+        "appearance": "Officer Jenkins is a man in his late 40s to early 50s, with a sturdy, medium build. His face is etched with the lines of experience and late nights, often showing a slight five o'clock shadow. He has sharp, intelligent eyes that betray a deep weariness. His hair is short, receding slightly at the temples, and flecked with grey. He wears a meticulously kept, dark blue police uniform, often complemented by a classic, slightly rumpled beige trench coat, collar turned up against the elements, and a wide-brimmed fedora pulled low.",
+        "voice_profile": {
+          "tone": "serious and steady, with a low, slightly gravelly timbre",
+          "accent": "North American (Mid-Atlantic/General American)",
+          "edge_tts_voice": "en-US-GuyNeural"
+        },
+        "reference_style": "cinematic portrait"
+      }
+    ]
+  }
+}

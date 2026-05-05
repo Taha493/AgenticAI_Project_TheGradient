@@ -1,0 +1,175 @@
+{
+  "validated_clips": {
+    "clips": [
+      {
+        "scene_id": 1,
+        "video_path": "raw_scenes/scene_01.mp4",
+        "audio_path": "audio_tracks/scene_1_merged.mp3",
+        "duration_s": 3.89,
+        "location": "INT. DETECTIVE KANE'S OFFICE - NIGHT (RAIN)",
+        "dialogue": [
+          {
+            "speaker": "DETECTIVE KANE",
+            "line": "Start from the beginning, Mrs. Vance. Take your time.",
+            "visual_cue": "CU on Kane's worn face, eyes shadowed by the brim of his fedora. The only light comes from a desk lamp."
+          },
+          {
+            "speaker": "MRS. ELARA VANCE",
+            "line": "He just... vanished. Arthur wasn't like this. He always called. Never missed a night.",
+            "visual_cue": "Elara clutches a damp handkerchief, her voice trembling. Her designer dress is slightly water-stained."
+          },
+          {
+            "speaker": "DETECTIVE KANE",
+            "line": "Any enemies? Business trouble? Anyone want him gone?",
+            "visual_cue": "Kane leans back, a plume of cigarette smoke curling into the dim light. Rain hammers against the grimy window behind him."
+          }
+        ],
+        "action": "DETECTIVE KANE, a weary man in a rumpled trench coat, listens impassively as MRS. ELARA VANCE, a distraught woman in a soaked dress, recounts the sudden disappearance of her husband, Arthur. The relentless rain outside seems to amplify the quiet despair in the small, smoke-filled office.",
+        "mood": "serious"
+      },
+      {
+        "scene_id": 2,
+        "video_path": "raw_scenes/scene_02.mp4",
+        "audio_path": "audio_tracks/scene_2_merged.mp3",
+        "duration_s": 8.59,
+        "location": "INT. ARTHUR VANCE'S PENTHOUSE APARTMENT - DAY (RAIN)",
+        "dialogue": [
+          {
+            "speaker": "OFFICER JENKINS",
+            "line": "Place was spotless when we first checked, Detective. Like he just stepped out for groceries. No forced entry.",
+            "visual_cue": "Jenkins gestures broadly, then shivers slightly despite the warm apartment. Rain lashes against the panoramic windows."
+          },
+          {
+            "speaker": "DETECTIVE KANE",
+            "line": "Too spotless. A man like Vance leaves a trail. Something feels off.",
+            "visual_cue": "Kane runs a gloved hand along a pristine bookshelf, then his eyes narrow on a barely visible irregularity near the fireplace."
+          },
+          {
+            "speaker": "DETECTIVE KANE",
+            "line": "What's this?",
+            "visual_cue": "CU on a loose floorboard near the fireplace, slightly ajar. Kane kneels, prying it open with a lock-pick."
+          }
+        ],
+        "action": "DETECTIVE KANE methodically searches Arthur Vance's opulent but eerily sterile penthouse. OFFICER JENKINS, a uniformed cop, trails him, offering observations. Kane finds a hidden compartment behind a loose floorboard, revealing a small, velvet-covered journal, its pages damp at the edges.",
+        "mood": "dramatic"
+      },
+      {
+        "scene_id": 3,
+        "video_path": "raw_scenes/scene_03.mp4",
+        "audio_path": "audio_tracks/scene_3_merged.mp3",
+        "duration_s": 3.98,
+        "location": "INT. \"THE DROWNED RAT\" BAR - NIGHT (RAIN)",
+        "dialogue": [
+          {
+            "speaker": "DETECTIVE KANE",
+            "line": "Arthur Vance. Regular here. Was he in tonight?",
+            "visual_cue": "Kane slides a crumpled bill across the sticky bar counter. The Bartender, a shifty man with tired eyes, eyes it greedily."
+          },
+          {
+            "speaker": "BARTENDER",
+            "line": "Vance? Yeah, he was. But not since... well, not since the other night. He met someone.",
+            "visual_cue": "The Bartender polishes a glass nervously, avoiding Kane's intense gaze. Water drips from a leaky spot in the ceiling nearby."
+          },
+          {
+            "speaker": "DETECTIVE KANE",
+            "line": "Who? What happened?",
+            "visual_cue": "Kane leans in, his shadow looming over the Bartender. The dim neon sign from outside casts a sickly red glow."
+          },
+          {
+            "speaker": "BARTENDER",
+            "line": "A woman. Blonde. Left in a hurry. Looked scared. Said something about 'the ledger' and 'the docks' before he bolted.",
+            "visual_cue": "The Bartender glances at a flickering television screen in the corner, then quickly back at Kane, suddenly eager to get rid of him."
+          }
+        ],
+        "action": "DETECTIVE KANE enters 'THE DROWNED RAT' bar, the journal's last entry leading him to this smoky, dimly lit dive. He interrogates the BARTENDER, who reluctantly reveals that Arthur Vance was last seen here meeting a mysterious blonde woman, mentioning 'the ledger' and 'the docks' before his sudden disappearance. The rain outside continues its relentless assault.",
+        "mood": "mysterious"
+      }
+    ]
+  },
+  "bgm_paths": {
+    "bgm_paths": [
+      "outputs\\bgm\\bgm_scene_1.wav",
+      "outputs\\bgm\\bgm_scene_2.wav",
+      "outputs\\bgm\\bgm_scene_3.wav"
+    ]
+  },
+  "subtitled_clips": {
+    "subtitled_paths": [
+      "raw_scenes\\scene_01_subtitled.mp4",
+      "raw_scenes\\scene_02_subtitled.mp4",
+      "raw_scenes\\scene_03_subtitled.mp4"
+    ]
+  },
+  "final_video": {
+    "path": "outputs/final_output.mp4",
+    "timing": [
+      {
+        "scene_id": 1,
+        "location": "INT. DETECTIVE KANE'S OFFICE - NIGHT (RAIN)",
+        "start_frame": 0,
+        "end_frame": 129,
+        "start_ms": 0,
+        "end_ms": 5375,
+        "audio_path": "audio_tracks/scene_1_merged.mp3",
+        "mood": "serious"
+      },
+      {
+        "scene_id": 2,
+        "location": "INT. ARTHUR VANCE'S PENTHOUSE APARTMENT - DAY (RAIN)",
+        "start_frame": 129,
+        "end_frame": 371,
+        "start_ms": 5375,
+        "end_ms": 15458,
+        "audio_path": "audio_tracks/scene_2_merged.mp3",
+        "mood": "dramatic"
+      },
+      {
+        "scene_id": 3,
+        "location": "INT. \"THE DROWNED RAT\" BAR - NIGHT (RAIN)",
+        "start_frame": 371,
+        "end_frame": 502,
+        "start_ms": 15458,
+        "end_ms": 20916,
+        "audio_path": "audio_tracks/scene_3_merged.mp3",
+        "mood": "mysterious"
+      }
+    ]
+  },
+  "timing_manifest": {
+    "version": 1,
+    "entries": [
+      {
+        "scene_id": 1,
+        "location": "INT. DETECTIVE KANE'S OFFICE - NIGHT (RAIN)",
+        "start_frame": 0,
+        "end_frame": 129,
+        "start_ms": 0,
+        "end_ms": 5375,
+        "audio_path": "audio_tracks/scene_1_merged.mp3",
+        "mood": "serious"
+      },
+      {
+        "scene_id": 2,
+        "location": "INT. ARTHUR VANCE'S PENTHOUSE APARTMENT - DAY (RAIN)",
+        "start_frame": 129,
+        "end_frame": 371,
+        "start_ms": 5375,
+        "end_ms": 15458,
+        "audio_path": "audio_tracks/scene_2_merged.mp3",
+        "mood": "dramatic"
+      },
+      {
+        "scene_id": 3,
+        "location": "INT. \"THE DROWNED RAT\" BAR - NIGHT (RAIN)",
+        "start_frame": 371,
+        "end_frame": 502,
+        "start_ms": 15458,
+        "end_ms": 20916,
+        "audio_path": "audio_tracks/scene_3_merged.mp3",
+        "mood": "mysterious"
+      }
+    ],
+    "total_scenes": 3,
+    "total_duration_ms": 20916
+  }
+}

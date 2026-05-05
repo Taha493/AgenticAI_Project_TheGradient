@@ -1,0 +1,32 @@
+{
+  "final_videos": {
+    "output_videos": [
+      "raw_scenes\\scene_01.mp4",
+      "raw_scenes\\scene_02.mp4",
+      "raw_scenes\\scene_03.mp4"
+    ],
+    "task_logs": [
+      {
+        "scene_id": 1,
+        "audio_path": "audio_tracks\\scene_1_merged.mp3",
+        "video_path": "raw_scenes\\scene_01_raw.mp4",
+        "output_path": "raw_scenes\\scene_01.mp4",
+        "status": "success"
+      },
+      {
+        "scene_id": 2,
+        "audio_path": "audio_tracks\\scene_2_merged.mp3",
+        "video_path": "raw_scenes\\scene_02_raw.mp4",
+        "output_path": "raw_scenes\\scene_02.mp4",
+        "status": "success"
+      },
+      {
+        "scene_id": 3,
+        "audio_path": "audio_tracks\\scene_3_merged.mp3",
+        "video_path": "raw_scenes\\scene_03_raw.mp4",
+        "output_path": "raw_scenes\\scene_03.mp4",
+        "status": "success"
+      }
+    ]
+  }
+}

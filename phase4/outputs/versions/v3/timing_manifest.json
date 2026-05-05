@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "scene_id": 1,
+      "location": "INT. DETECTIVE KANE'S OFFICE - NIGHT (RAIN)",
+      "start_frame": 0,
+      "end_frame": 129,
+      "start_ms": 0,
+      "end_ms": 5375,
+      "audio_path": "audio_tracks/scene_1_merged.mp3",
+      "mood": "serious"
+    },
+    {
+      "scene_id": 2,
+      "location": "INT. ARTHUR VANCE'S PENTHOUSE APARTMENT - DAY (RAIN)",
+      "start_frame": 129,
+      "end_frame": 371,
+      "start_ms": 5375,
+      "end_ms": 15458,
+      "audio_path": "audio_tracks/scene_2_merged.mp3",
+      "mood": "dramatic"
+    },
+    {
+      "scene_id": 3,
+      "location": "INT. \"THE DROWNED RAT\" BAR - NIGHT (RAIN)",
+      "start_frame": 371,
+      "end_frame": 502,
+      "start_ms": 15458,
+      "end_ms": 20916,
+      "audio_path": "audio_tracks/scene_3_merged.mp3",
+      "mood": "mysterious"
+    }
+  ],
+  "total_scenes": 3,
+  "total_duration_ms": 20916
+}

@@ -1,0 +1,60 @@
+# ── Generated outputs (large files, regenerated on each run) ─────────────────
+raw_scenes/
+audio_tracks/
+image_assets/
+outputs/final_output.mp4
+outputs/bgm/
+outputs/memory/
+outputs/versions/
+task_logs/
+
+# ── Keep these output files (small, useful for demo) ─────────────────────────
+!outputs/scene_manifest.json
+!outputs/character_db.json
+!outputs/timing_manifest.json
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Virtual environment ───────────────────────────────────────────────────────
+venv/
+env/
+.venv/
+.env/
+
+# ── Environment variables (contains API keys) ─────────────────────────────────
+.env
+.env.local
+.env.production
+
+# ── SQLite databases ──────────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ── OS files ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE / Editor ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.user
+
+# ── Pytest / test cache ───────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Gitkeep placeholders (not needed in repo) ─────────────────────────────────
+**/.gitkeep

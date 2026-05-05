@@ -1,0 +1,14 @@
+{
+  "scene_1": {
+    "output_path": "raw_scenes\\scene_01.mp4",
+    "status": "success"
+  },
+  "scene_2": {
+    "output_path": "raw_scenes\\scene_02.mp4",
+    "status": "success"
+  },
+  "scene_3": {
+    "output_path": "raw_scenes\\scene_03.mp4",
+    "status": "success"
+  }
+}

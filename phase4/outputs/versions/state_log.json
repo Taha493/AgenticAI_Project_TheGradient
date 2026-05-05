@@ -1,0 +1,62 @@
+[
+  {
+    "version": 1,
+    "timestamp": 1777802245.0728774,
+    "description": "Generated: A detective investigates a mysterious disappearance in a rai",
+    "state_file": "outputs\\versions\\v1\\state.json",
+    "assets": [
+      "outputs\\versions\\v1\\final_output.mp4",
+      "outputs\\versions\\v1\\timing_manifest.json",
+      "outputs\\versions\\v1\\scene_manifest.json",
+      "outputs\\versions\\v1\\character_db.json",
+      "outputs\\versions\\v1\\scene_01.mp4",
+      "outputs\\versions\\v1\\scene_02.mp4",
+      "outputs\\versions\\v1\\scene_03.mp4"
+    ],
+    "asset_count": 7
+  },
+  {
+    "version": 2,
+    "timestamp": 1777807025.427386,
+    "description": "Generated: A detective investigates a mysterious disappearance in a rai",
+    "state_file": "outputs\\versions\\v2\\state.json",
+    "assets": [
+      "outputs\\versions\\v2\\final_output.mp4",
+      "outputs\\versions\\v2\\timing_manifest.json",
+      "outputs\\versions\\v2\\scene_manifest.json",
+      "outputs\\versions\\v2\\character_db.json",
+      "outputs\\versions\\v2\\scene_01.mp4",
+      "outputs\\versions\\v2\\scene_02.mp4",
+      "outputs\\versions\\v2\\scene_03.mp4"
+    ],
+    "asset_count": 7
+  },
+  {
+    "version": 3,
+    "timestamp": 1777828919.541173,
+    "description": "Generated: A detective investigates a mysterious disappearance in a rai",
+    "state_file": "outputs\\versions\\v3\\state.json",
+    "assets": [
+      "outputs\\versions\\v3\\final_output.mp4",
+      "outputs\\versions\\v3\\timing_manifest.json",
+      "outputs\\versions\\v3\\scene_manifest.json",
+      "outputs\\versions\\v3\\character_db.json",
+      "outputs\\versions\\v3\\scene_01.mp4",
+      "outputs\\versions\\v3\\scene_02.mp4",
+      "outputs\\versions\\v3\\scene_03.mp4"
+    ],
+    "asset_count": 7
+  },
+  {
+    "version": 4,
+    "timestamp": 1777829010.7449834,
+    "description": "Edit: for scene 2, change the voice tone to whispered",
+    "state_file": "outputs\\versions\\v4\\state.json",
+    "assets": [
+      "outputs\\versions\\v4\\scene_2_dlg_00_officer_jenkins_edited.mp3",
+      "outputs\\versions\\v4\\scene_2_dlg_01_detective_kane_edited.mp3",
+      "outputs\\versions\\v4\\scene_2_dlg_02_detective_kane_edited.mp3"
+    ],
+    "asset_count": 3
+  }
+]

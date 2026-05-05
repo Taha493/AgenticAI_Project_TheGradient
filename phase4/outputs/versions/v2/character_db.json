@@ -1,0 +1,58 @@
+{
+  "characters": [
+    {
+      "id": "detective_miles_corbin",
+      "name": "Detective Miles Corbin",
+      "personality_traits": [
+        "Cynical",
+        "Observant",
+        "World-weary",
+        "Resilient",
+        "Stoic"
+      ],
+      "appearance": "A man in his late 40s to early 50s with a lean, strong build. He has a perpetually tired yet sharp gaze in his deep-set, intelligent eyes. His face is chiseled, often shadowed by a faint five o'clock stubble, hinting at long nights. He typically wears a classic, slightly rumpled beige trench coat, collar often turned up, and a well-creased dark fedora pulled low over his brow. Underneath, a dark suit and a loosened tie complete his professional yet worn-out look. His posture is often slightly hunched, suggesting years of carrying the weight of the city's darkness.",
+      "voice_profile": {
+        "tone": "Gravelly, serious, world-weary, with an underlying current of dry wit",
+        "accent": "Classic Mid-Atlantic American accent, reminiscent of 1940s-50s Hollywood noir",
+        "edge_tts_voice": "en-US-GuyNeural"
+      },
+      "reference_style": "cinematic portrait"
+    },
+    {
+      "id": "eleanor_albright",
+      "name": "Eleanor Albright",
+      "personality_traits": [
+        "Mysterious",
+        "Astute",
+        "Poised",
+        "Resilient",
+        "Alluring"
+      ],
+      "appearance": "Eleanor Albright is a woman of striking, timeless beauty, appearing in her early to mid-30s. Her raven-black hair is impeccably styled in sophisticated, soft waves that frame her face, or gathered into a chic updo. Her eyes are a captivating shade of emerald green, sharp and intelligent, often holding a deep, enigmatic quality that hints at hidden depths. She has a refined, fair complexion and elegantly sculpted features. Her figure is slender and graceful, accentuated by her impeccable taste in classic 1940s-era fashion: tailored dark silk or velvet gowns, sharp-shouldered suits, often adorned with a subtle strand of pearls or long gloves. Her demeanor is always composed, carrying an air of quiet sophistication and a subtle, intriguing melancholy.",
+      "voice_profile": {
+        "tone": "Calm, alluring, with a hint of world-weariness and quiet confidence",
+        "accent": "Refined American (General American)",
+        "edge_tts_voice": "en-US-AriaNeural"
+      },
+      "reference_style": "cinematic portrait"
+    },
+    {
+      "id": "slick'_eddie",
+      "name": "Slick' Eddie",
+      "personality_traits": [
+        "Opportunistic",
+        "Cunning",
+        "Superficially Charming",
+        "Untrustworthy",
+        "Street-smart"
+      ],
+      "appearance": "A man in his late 40s or early 50s with a lean, wiry build. His dark, thinning hair is meticulously slicked back, often hidden beneath the brim of a slightly worn but sharp fedora. He favors dark, well-cut suits that, while once expensive, now show signs of moderate wear. His eyes are sharp, darting, and perpetually assessive, often accompanied by a knowing, almost predatory smirk that plays on his thin lips. He carries himself with a casual confidence, every movement economical and purposeful.",
+      "voice_profile": {
+        "tone": "Smooth, confident, and slightly oily, with a conversational cadence that can easily shift into a conspiratorial whisper or a thinly veiled threat. There's an underlying cynicism that colors his every word.",
+        "accent": "Urban American (e.g., subtle New York or Chicago inflections)",
+        "edge_tts_voice": "en-US-GuyNeural"
+      },
+      "reference_style": "cinematic portrait"
+    }
+  ]
+}

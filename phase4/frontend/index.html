@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Montage — AI Video Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    :root {
+      --bg:       #0d0f14;
+      --surface:  #161922;
+      --card:     #1e2230;
+      --border:   #2a2f3d;
+      --accent:   #6c8ef7;
+      --accent2:  #a78bfa;
+      --success:  #34d399;
+      --warning:  #fbbf24;
+      --danger:   #f87171;
+      --text:     #e2e8f0;
+      --muted:    #8892a4;
+      --radius:   10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+    }
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .topbar h1 { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; }
+    .topbar h1 span { color: var(--accent); }
+    .badge {
+      font-size: 0.65rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 0;
+      height: calc(100vh - 53px);
+    }
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .main {
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .card h2 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 12px;
+      font-size: 0.9rem;
+      resize: vertical;
+      min-height: 90px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    textarea:focus { border-color: var(--accent); }
+    input[type=number] {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      padding: 7px 10px;
+      font-size: 0.9rem;
+      width: 70px;
+      outline: none;
+    }
+    .btn {
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 10px 18px;
+      transition: opacity 0.15s, transform 0.1s;
+      width: 100%;
+    }
+    .btn:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-primary  { background: var(--accent);  color: #fff; }
+    .btn-secondary{ background: var(--border);  color: var(--text); }
+    .btn-success  { background: var(--success); color: #000; }
+    .btn-danger   { background: var(--danger);  color: #fff; }
+    .btn-sm { padding: 6px 12px; font-size: 0.78rem; width: auto; }
+
+    /* Phase progress pills */
+    .phases { display: flex; flex-direction: column; gap: 10px; }
+    .phase-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+    .phase-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-pending  { background: var(--border); }
+    .dot-running  { background: var(--warning); animation: pulse 1s infinite; }
+    .dot-complete { background: var(--success); }
+    .dot-failed   { background: var(--danger); }
+    @keyframes pulse {
+      0%,100% { opacity:1; } 50% { opacity:0.3; }
+    }
+    .phase-label { font-size: 0.82rem; font-weight: 600; flex: 1; }
+    .phase-status { font-size: 0.72rem; color: var(--muted); }
+
+    /* Log feed */
+    .log-feed {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: monospace;
+      font-size: 0.78rem;
+      max-height: 180px;
+      overflow-y: auto;
+      line-height: 1.6;
+    }
+    .log-entry { color: var(--muted); }
+    .log-entry.complete { color: var(--success); }
+    .log-entry.error    { color: var(--danger); }
+    .log-entry.start    { color: var(--accent); }
+
+    /* Video player */
+    .video-wrap {
+      background: #000;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-wrap video { width: 100%; height: 100%; }
+    .video-placeholder {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .video-placeholder .icon { font-size: 2.5rem; margin-bottom: 8px; }
+
+    /* Scene cards */
+    .scene-grid { display: flex; flex-direction: column; gap: 10px; }
+    .scene-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .scene-card h3 { font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; }
+    .scene-card p  { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .scene-loc { font-size: 0.72rem; color: var(--accent2); margin-bottom: 4px; }
+
+    /* History */
+    .hist-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
+    .hist-v {
+      font-size: 0.72rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-weight: 700;
+    }
+    .hist-desc { font-size: 0.8rem; flex: 1; }
+    .hist-time { font-size: 0.7rem; color: var(--muted); }
+
+    /* Rerun buttons row */
+    .rerun-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* Timing manifest table */
+    .timing-table {
+      width: 100%; border-collapse: collapse; font-size: 0.8rem;
+    }
+    .timing-table th {
+      text-align: left; padding: 6px 10px;
+      background: var(--bg); color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .timing-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); }
+
+    /* Character portraits */
+    .char-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .char-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      width: 130px;
+      text-align: center;
+    }
+    .char-card img {
+      width: 80px; height: 80px;
+      border-radius: 6px;
+      object-fit: cover;
+      margin-bottom: 6px;
+    }
+    .char-name { font-size: 0.72rem; font-weight: 700; }
+    .char-trait { font-size: 0.65rem; color: var(--muted); }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 4px 0; }
+    .row { display: flex; gap: 10px; align-items: center; }
+    .label { font-size: 0.8rem; color: var(--muted); }
+    select {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 6px; color: var(--text);
+      padding: 7px 10px; font-size: 0.88rem; outline: none;
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef, useCallback } = React;
+
+const API = "http://localhost:8000";
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function fmt_time(ts) {
+  return ts ? new Date(ts * 1000).toLocaleTimeString() : "";
+}
+function fmt_ms(ms) {
+  const s = (ms / 1000).toFixed(1);
+  return `${s}s`;
+}
+
+// ── Phase status dot ──────────────────────────────────────────────────────────
+function PhaseDot({ status }) {
+  return <span className={`phase-dot dot-${status || "pending"}`} />;
+}
+
+// ── Log entry ─────────────────────────────────────────────────────────────────
+function LogEntry({ msg }) {
+  return (
+    <div className={`log-entry ${msg.event}`}>
+      <span style={{color:"#4a5568"}}>[{fmt_time(msg.ts)}]</span>{" "}
+      <span style={{color:"#94a3b8"}}>{msg.phase}</span>{" "}
+      {msg.detail}
+    </div>
+  );
+}
+
+
+// ── Edit Panel Component ──────────────────────────────────────────────────────
+const _editAgentRef = { history: [] };
+
+function EditPanel({ apiBase }) {
+  const [query, setQuery]         = useState("");
+  const [preview, setPreview]     = useState(null);
+  const [result, setResult]       = useState(null);
+  const [loading, setLoading]     = useState(false);
+  const [history, setHistory]     = useState([]);
+  const [sessionLog, setSession]  = useState([]);
+
+  async function loadHistory() {
+    try {
+      const r = await fetch(`${apiBase}/api/edit/history`);
+      if (r.ok) {
+        const d = await r.json();
+        setHistory(d.version_history  || []);
+        setSession(d.session_history  || []);
+      }
+    } catch {}
+  }
+
+  useEffect(() => { loadHistory(); }, []);
+
+  async function handlePreview() {
+    if (!query.trim()) return;
+    setPreview(null);
+    try {
+      const r = await fetch(`${apiBase}/api/edit/classify`, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ query }),
+      });
+      if (r.ok) setPreview(await r.json());
+    } catch {}
+  }
+
+  async function handleApply() {
+    if (!query.trim()) return;
+    setLoading(true); setResult(null);
+    try {
+      const r = await fetch(`${apiBase}/api/edit`, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ query }),
+      });
+      const d = await r.json();
+      // Poll for completion
+      let attempts = 0;
+      while (attempts < 360) {
+        await new Promise(res => setTimeout(res, 2000));
+        const s = await fetch(`${apiBase}/api/status/${d.job_id}`);
+        const sd = await s.json();
+        if (sd.status === "complete" || sd.status === "failed") {
+          setResult(sd);
+          break;
+        }
+        attempts++;
+      }
+      loadHistory();
+    } catch(e) {
+      setResult({ status:"failed", error: e.message });
+    }
+    setLoading(false);
+  }
+
+  async function handleUndo(version) {
+    const url = version != null
+      ? `${apiBase}/api/undo?version=${version}`
+      : `${apiBase}/api/undo`;
+    try {
+      const r = await fetch(url, { method:"POST" });
+      if (r.ok) { alert("Reverted successfully!"); loadHistory(); }
+    } catch(e) { alert("Undo failed: " + e.message); }
+  }
+
+  const EXAMPLES = [
+    "Make scene 1 darker",
+    "Change the voice tone to whispered",
+    "Apply sepia filter to all scenes",
+    "Speed up scene 2",
+    "Add background music",
+    "Remove subtitles",
+    "Make scene 3 brighter",
+    "Change voice to dramatic",
+    "Apply grayscale filter to scene 1",
+    "Slow down scene 3",
+  ];
+
+  return (
+    <div style={{display:"flex", flexDirection:"column", gap:16}}>
+      <div className="card">
+        <h2>Edit Command</h2>
+        <textarea
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          placeholder='Describe your edit... e.g. "Make scene 2 darker" or "Change voice tone to whispered"'
+          style={{minHeight:70}}
+        />
+        <div style={{marginTop:8, display:"flex", gap:8}}>
+          <button className="btn btn-secondary" style={{flex:1}}
+            onClick={handlePreview} disabled={loading || !query.trim()}>
+            🔍 Preview Intent
+          </button>
+          <button className="btn btn-primary" style={{flex:1}}
+            onClick={handleApply} disabled={loading || !query.trim()}>
+            {loading ? "⏳ Applying…" : "✏️ Apply Edit"}
+          </button>
+        </div>
+
+        {/* Intent preview */}
+        {preview && (
+          <div style={{marginTop:12, background:"var(--bg)", borderRadius:8, padding:12,
+                       border:"1px solid var(--border)", fontSize:"0.82rem"}}>
+            <div style={{marginBottom:6, fontWeight:700, color:"var(--accent)"}}>
+              Classified Intent
+            </div>
+            <div><span style={{color:"var(--muted)"}}>Intent:</span>{" "}
+              <strong>{preview.intent?.intent}</strong></div>
+            <div><span style={{color:"var(--muted)"}}>Target:</span>{" "}
+              <span style={{color:"var(--accent2)"}}>{preview.intent?.target}</span></div>
+            <div><span style={{color:"var(--muted)"}}>Scope:</span>{" "}
+              {preview.intent?.scope}</div>
+            <div><span style={{color:"var(--muted)"}}>Params:</span>{" "}
+              {JSON.stringify(preview.intent?.parameters)}</div>
+            <div><span style={{color:"var(--muted)"}}>Confidence:</span>{" "}
+              {((preview.intent?.confidence || 0) * 100).toFixed(0)}%</div>
+          </div>
+        )}
+
+        {/* Result */}
+        {result && (
+          <div style={{marginTop:12, padding:10, borderRadius:8,
+            background: result.status==="complete" ? "rgba(52,211,153,0.1)" : "rgba(248,113,113,0.1)",
+            border:`1px solid ${result.status==="complete" ? "var(--success)" : "var(--danger)"}`,
+            fontSize:"0.82rem"}}>
+            {result.status === "complete"
+              ? `✓ Edit applied successfully`
+              : `✗ ${result.error || "Edit failed"}`}
+          </div>
+        )}
+      </div>
+
+      {/* Example commands */}
+      <div className="card">
+        <h2>Example Edit Commands</h2>
+        <div style={{display:"flex", flexWrap:"wrap", gap:6}}>
+          {EXAMPLES.map(ex => (
+            <button key={ex} className="btn btn-secondary btn-sm"
+              onClick={() => setQuery(ex)} style={{fontSize:"0.75rem"}}>
+              {ex}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Version history with undo */}
+      <div className="card">
+        <h2>Version History & Undo</h2>
+        <button className="btn btn-secondary btn-sm"
+          style={{marginBottom:10, width:"auto"}}
+          onClick={() => handleUndo(null)}>
+          ↩ Undo Last Edit
+        </button>
+        {history.length === 0
+          ? <p style={{fontSize:"0.8rem", color:"var(--muted)"}}>No versions yet.</p>
+          : history.map(v => (
+            <div className="hist-item" key={v.version}>
+              <span className="hist-v">v{v.version}</span>
+              <span className="hist-desc">{v.description?.slice(0,45) || "—"}</span>
+              <span className="hist-time">{fmt_time(v.timestamp)}</span>
+              <button className="btn btn-danger btn-sm"
+                onClick={() => handleUndo(v.version)}>↩ Revert</button>
+            </div>
+          ))
+        }
+      </div>
+
+      {/* Session log */}
+      {sessionLog.length > 0 && (
+        <div className="card">
+          <h2>Session Edit Log</h2>
+          <div className="log-feed">
+            {sessionLog.map((e, i) => (
+              <div key={i} className={`log-entry ${e.status}`}>
+                <span style={{color:"var(--accent)"}}>{e.query}</span>
+                {" → "}<span style={{color: e.status==="complete"?"var(--success)":"var(--danger)"}}>
+                  {e.status}
+                </span>
+                {e.version_after != null && ` (v${e.version_after})`}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+// ── Running ticker — shows elapsed time and current phase ────────────────────
+function RunningTicker({ job }) {
+  const [elapsed, setElapsed] = React.useState(0);
+  React.useEffect(() => {
+    const t = setInterval(() => setElapsed(e => e + 1), 1000);
+    return () => clearInterval(t);
+  }, []);
+  const mins = Math.floor(elapsed / 60);
+  const secs = elapsed % 60;
+  const activePhase = job?.phase1_status === "running" ? "Phase 1 — Generating script..."
+    : job?.phase2_status === "running" ? "Phase 2 — Synthesising audio & video (this is the slow step)..."
+    : job?.phase3_status === "running" ? "Phase 3 — Compositing final video..."
+    : "Pipeline running...";
+  return (
+    <div style={{
+      textAlign:"center", padding:"20px",
+      background:"rgba(251,191,36,0.08)",
+      border:"1px solid rgba(251,191,36,0.3)",
+      borderRadius:10, margin:"8px 0"
+    }}>
+      <div style={{fontSize:"1.4rem", marginBottom:6}}>⏳</div>
+      <div style={{color:"var(--warning)", fontWeight:600, fontSize:"0.95rem", marginBottom:4}}>
+        {activePhase}
+      </div>
+      <div style={{color:"var(--muted)", fontSize:"0.82rem"}}>
+        Elapsed: {mins}m {secs.toString().padStart(2,"0")}s
+        {job?.phase2_status === "running" && (
+          <span> · TTS audio generation can take 5–15 min on Windows</span>
+        )}
+      </div>
+      <div style={{
+        marginTop:10, height:4, background:"var(--border)",
+        borderRadius:2, overflow:"hidden"
+      }}>
+        <div style={{
+          height:"100%",
+          width: job?.phase1_status==="complete" && job?.phase2_status==="complete" ? "80%"
+               : job?.phase1_status==="complete" ? "35%"
+               : "10%",
+          background:"var(--warning)",
+          transition:"width 2s ease",
+          borderRadius:2,
+        }} />
+      </div>
+    </div>
+  );
+}
+
+// ── Main App ──────────────────────────────────────────────────────────────────
+function App() {
+  const [prompt, setPrompt]       = useState("A detective investigates a mysterious disappearance in a rain-soaked city");
+  const [scenes, setScenes]       = useState(3);
+  const [jobId, setJobId]         = useState(null);
+  const [job, setJob]             = useState(null);
+  const [logs, setLogs]           = useState([]);
+  const [history, setHistory]     = useState([]);
+  const [sceneData, setSceneData] = useState(null);
+  const [charData, setCharData]   = useState(null);
+  const [timing, setTiming]       = useState(null);
+  const [tab, setTab]             = useState("progress");
+  const wsRef   = useRef(null);
+  const logRef  = useRef(null);
+  const pollRef = useRef(null);
+
+  // ── Connect WebSocket ────────────────────────────────────────────────────
+  function connectWS(jid) {
+    if (wsRef.current) wsRef.current.close();
+    const ws = new WebSocket(`ws://localhost:8000/ws/progress/${jid}`);
+    ws.onmessage = (e) => {
+      const msg = JSON.parse(e.data);
+      setLogs(prev => [...prev, msg]);
+      setTimeout(() => {
+        if (logRef.current) logRef.current.scrollTop = logRef.current.scrollHeight;
+      }, 50);
+    };
+    wsRef.current = ws;
+  }
+
+  // ── Poll job status ──────────────────────────────────────────────────────
+  function startPolling(jid) {
+    if (pollRef.current) clearInterval(pollRef.current);
+    // Poll every 5 seconds to avoid log spam
+    pollRef.current = setInterval(async () => {
+      try {
+        const r = await fetch(`${API}/api/status/${jid}`);
+        const d = await r.json();
+        setJob(d);
+        if (d.status === "complete" || d.status === "failed") {
+          clearInterval(pollRef.current);
+          if (d.status === "complete") {
+            loadScenes(); loadChars(); loadTiming(); loadHistory();
+          }
+        }
+      } catch {}
+    }, 5000);
+  }
+
+  // ── Generate ─────────────────────────────────────────────────────────────
+  async function handleGenerate() {
+    setLogs([]); setJob(null); setSceneData(null); setCharData(null); setTiming(null);
+    try {
+      const r = await fetch(`${API}/api/generate`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ prompt, scenes: parseInt(scenes), mode: "auto" }),
+      });
+      const d = await r.json();
+      setJobId(d.job_id);
+      connectWS(d.job_id);
+      startPolling(d.job_id);
+      setTab("progress");
+    } catch(e) {
+      alert("Failed to start generation: " + e.message);
+    }
+  }
+
+  // ── Rerun phase ──────────────────────────────────────────────────────────
+  async function handleRerun(phase) {
+    setLogs([]); setJob(prev => ({...prev, status:"running", [`${phase}_status`]:"running"}));
+    try {
+      const r = await fetch(`${API}/api/rerun/${phase}`, { method: "POST" });
+      const d = await r.json();
+      setJobId(d.job_id);
+      connectWS(d.job_id);
+      startPolling(d.job_id);
+    } catch(e) { alert("Rerun failed: " + e.message); }
+  }
+
+  // ── Revert version ───────────────────────────────────────────────────────
+  async function handleRevert(v) {
+    if (!confirm(`Revert to version ${v}? Current outputs will be overwritten.`)) return;
+    try {
+      const r = await fetch(`${API}/api/revert/${v}`, { method: "POST" });
+      const d = await r.json();
+      alert(`Reverted to v${v}. ${d.restored_files?.length || 0} files restored.`);
+      loadScenes(); loadChars(); loadTiming(); loadHistory();
+    } catch(e) { alert("Revert failed: " + e.message); }
+  }
+
+  // ── Data loaders ─────────────────────────────────────────────────────────
+  async function loadScenes() {
+    try {
+      const r = await fetch(`${API}/api/scenes`);
+      if (r.ok) setSceneData(await r.json());
+    } catch {}
+  }
+  async function loadChars() {
+    try {
+      const r = await fetch(`${API}/api/characters`);
+      if (r.ok) setCharData(await r.json());
+    } catch {}
+  }
+  async function loadTiming() {
+    try {
+      const r = await fetch(`${API}/outputs/timing_manifest.json`);
+      if (r.ok) setTiming(await r.json());
+    } catch {}
+  }
+  async function loadHistory() {
+    try {
+      const r = await fetch(`${API}/api/history`);
+      if (r.ok) setHistory((await r.json()).versions || []);
+    } catch {}
+  }
+
+  useEffect(() => {
+    loadScenes(); loadChars(); loadTiming(); loadHistory();
+    return () => {
+      if (wsRef.current) wsRef.current.close();
+      if (pollRef.current) clearInterval(pollRef.current);
+    };
+  }, []);
+
+  const isRunning = job?.status === "running" || job?.status === "queued";
+  const isDone    = job?.status === "complete";
+  const isFailed  = job?.status === "failed";
+
+  // ── Sidebar ───────────────────────────────────────────────────────────────
+  const sidebar = (
+    <div className="sidebar">
+      {/* Prompt input */}
+      <div className="card">
+        <h2>Story Prompt</h2>
+        <textarea
+          value={prompt}
+          onChange={e => setPrompt(e.target.value)}
+          placeholder="Describe your story..."
+          disabled={isRunning}
+        />
+        <div className="row" style={{marginTop:10, gap:8}}>
+          <span className="label">Scenes:</span>
+          <input type="number" min={1} max={8} value={scenes}
+            onChange={e => setScenes(e.target.value)} disabled={isRunning} />
+        </div>
+        <button
+          className="btn btn-primary"
+          style={{marginTop:12}}
+          onClick={handleGenerate}
+          disabled={isRunning || !prompt.trim()}
+        >
+          {isRunning ? "⏳ Generating…" : "🎬 Generate Video"}
+        </button>
+      </div>
+
+      {/* Phase status */}
+      <div className="card">
+        <h2>Pipeline Status</h2>
+        <div className="phases">
+          {[
+            ["phase1", "Phase 1 — Script & Characters"],
+            ["phase2", "Phase 2 — Audio & Scene Video"],
+            ["phase3", "Phase 3 — Final Composition"],
+          ].map(([key, label]) => (
+            <div className="phase-row" key={key}>
+              <PhaseDot status={job?.[`${key}_status`] || "pending"} />
+              <span className="phase-label">{label}</span>
+              <span className="phase-status">{job?.[`${key}_status`] || "pending"}</span>
+            </div>
+          ))}
+        </div>
+        {isFailed && (
+          <div style={{marginTop:10, color:"var(--danger)", fontSize:"0.8rem"}}>
+            ✗ {job.error}
+          </div>
+        )}
+      </div>
+
+      {/* Re-run buttons */}
+      {(isDone || isFailed) && (
+        <div className="card">
+          <h2>Re-run Phase</h2>
+          <div style={{display:"flex", flexDirection:"column", gap:7}}>
+            <button className="btn btn-secondary" onClick={() => handleRerun("phase1")}>↻ Re-run Phase 1</button>
+            <button className="btn btn-secondary" onClick={() => handleRerun("phase2")}>↻ Re-run Phase 2</button>
+            <button className="btn btn-secondary" onClick={() => handleRerun("phase3")}>↻ Re-run Phase 3</button>
+          </div>
+        </div>
+      )}
+
+      {/* Version history */}
+      <div className="card">
+        <h2>Version History</h2>
+        {history.length === 0
+          ? <p style={{fontSize:"0.8rem", color:"var(--muted)"}}>No versions yet.</p>
+          : history.map(v => (
+            <div className="hist-item" key={v.version}>
+              <span className="hist-v">v{v.version}</span>
+              <span className="hist-desc">{v.description?.slice(0,40) || "—"}</span>
+              <span className="hist-time">{fmt_time(v.timestamp)}</span>
+              <button className="btn btn-secondary btn-sm"
+                onClick={() => handleRevert(v.version)}>Revert</button>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  );
+
+  // ── Tabs ──────────────────────────────────────────────────────────────────
+  const tabs = ["progress", "video", "scenes", "characters", "timing", "edit"];
+
+  const mainContent = (
+    <div className="main">
+      {/* Tab bar */}
+      <div style={{display:"flex", gap:6, borderBottom:"1px solid var(--border)", paddingBottom:10}}>
+        {tabs.map(t => (
+          <button key={t} className={`btn btn-sm btn-${tab===t?"primary":"secondary"}`}
+            style={{width:"auto"}} onClick={() => setTab(t)}>
+            {t.charAt(0).toUpperCase() + t.slice(1)}
+          </button>
+        ))}
+        {isDone && (
+          <a href={`${API}/api/download/video`}
+            style={{marginLeft:"auto", textDecoration:"none"}}>
+            <button className="btn btn-success btn-sm">⬇ Download MP4</button>
+          </a>
+        )}
+      </div>
+
+      {/* Progress tab */}
+      {tab === "progress" && (
+        <div>
+          <div className="card" style={{marginBottom:12}}>
+            <h2>Live Progress</h2>
+            <div className="log-feed" ref={logRef}>
+              {logs.length === 0
+                ? <span style={{color:"var(--muted)"}}>Waiting for pipeline...</span>
+                : logs.map((m, i) => <LogEntry key={i} msg={m} />)
+              }
+            </div>
+          </div>
+
+          {isRunning && <RunningTicker job={job} />}
+
+          {isDone && (
+            <div style={{textAlign:"center", color:"var(--success)", fontSize:"0.95rem", padding:"16px 0", fontWeight:600}}>
+              ✅ Generation complete! Switch to the <strong>Video</strong> tab to preview.
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Video tab */}
+      {tab === "video" && (
+        <div className="card">
+          <h2>Final Output</h2>
+          <div className="video-wrap">
+            {isDone || Path.exists ? (
+              <video controls src={`${API}/outputs/final_output.mp4`}
+                onError={() => {}} />
+            ) : (
+              <div className="video-placeholder">
+                <div className="icon">🎬</div>
+                <div>Generate a video to preview it here</div>
+              </div>
+            )}
+          </div>
+          <div style={{marginTop:14, display:"flex", gap:8}}>
+            <a href={`${API}/api/download/video`} style={{textDecoration:"none", flex:1}}>
+              <button className="btn btn-success">⬇ Download Final MP4</button>
+            </a>
+            <a href={`${API}/api/download/manifest`} style={{textDecoration:"none", flex:1}}>
+              <button className="btn btn-secondary">⬇ Timing Manifest</button>
+            </a>
+          </div>
+          <div style={{marginTop:14}}>
+            <h2 style={{marginBottom:10}}>Individual Scenes</h2>
+            <div style={{display:"flex", flexWrap:"wrap", gap:8}}>
+              {[1,2,3,4].map(i => (
+                <div key={i} style={{flex:"1 1 200px"}}>
+                  <video controls style={{width:"100%", borderRadius:8, background:"#000"}}
+                    src={`${API}/raw_scenes/scene_0${i}.mp4`}
+                    onError={e => { e.target.style.display="none"; }} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Scenes tab */}
+      {tab === "scenes" && (
+        <div className="card">
+          <h2>Script Scenes</h2>
+          {sceneData ? (
+            <>
+              <div style={{marginBottom:12}}>
+                <strong>{sceneData.title}</strong>
+                <span style={{color:"var(--muted)", fontSize:"0.8rem", marginLeft:10}}>
+                  {sceneData.genre} · {sceneData.scenes?.length || 0} scenes
+                </span>
+              </div>
+              <div className="scene-grid">
+                {(sceneData.scenes || []).map(s => (
+                  <div className="scene-card" key={s.scene_id}>
+                    <div className="scene-loc">{s.location}</div>
+                    <h3>Scene {s.scene_id} — {(s.characters || []).join(", ")}</h3>
+                    <p>{s.action_description}</p>
+                    <hr className="divider" style={{margin:"8px 0"}} />
+                    {(s.dialogue || []).map((d, i) => (
+                      <p key={i} style={{marginBottom:4}}>
+                        <strong style={{color:"var(--accent)"}}>{d.speaker}:</strong>{" "}
+                        {d.line}
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <p style={{color:"var(--muted)", fontSize:"0.88rem"}}>
+              Generate a video or run Phase 1 to see scene data.
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* Characters tab */}
+      {tab === "characters" && (
+        <div className="card">
+          <h2>Character Roster</h2>
+          {charData ? (
+            <div className="char-grid">
+              {(charData.characters || []).map(c => (
+                <div className="char-card" key={c.id}>
+                  <img src={`${API}/image_assets/${c.id}.png`}
+                    onError={e => { e.target.src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect fill='%231e2230' width='80' height='80'/%3E%3Ctext x='40' y='45' text-anchor='middle' fill='%236c8ef7' font-size='28'%3E👤%3C/text%3E%3C/svg%3E"; }}
+                    alt={c.name} />
+                  <div className="char-name">{c.name}</div>
+                  <div className="char-trait">{(c.personality_traits || []).slice(0,2).join(", ")}</div>
+                  <div className="char-trait" style={{marginTop:3, color:"var(--accent2)"}}>
+                    {c.voice_profile?.edge_tts_voice?.replace("en-US-","")?.replace("Neural","") || ""}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p style={{color:"var(--muted)", fontSize:"0.88rem"}}>
+              Generate a video to see character roster.
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* Timing tab */}
+      {tab === "timing" && (
+        <div className="card">
+          <h2>Timing Manifest</h2>
+          {timing ? (
+            <>
+              <div style={{marginBottom:12, fontSize:"0.82rem", color:"var(--muted)"}}>
+                Total duration: <strong style={{color:"var(--text)"}}>{fmt_ms(timing.total_duration_ms)}</strong>
+                {" · "}{timing.total_scenes} scenes
+              </div>
+              <table className="timing-table">
+                <thead>
+                  <tr>
+                    <th>Scene</th>
+                    <th>Location</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Duration</th>
+                    <th>Mood</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(timing.entries || []).map(e => (
+                    <tr key={e.scene_id}>
+                      <td>{e.scene_id}</td>
+                      <td style={{maxWidth:200, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap"}}>
+                        {e.location}
+                      </td>
+                      <td>{fmt_ms(e.start_ms)}</td>
+                      <td>{fmt_ms(e.end_ms)}</td>
+                      <td>{fmt_ms(e.end_ms - e.start_ms)}</td>
+                      <td><span style={{color:"var(--accent2)"}}>{e.mood}</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          ) : (
+            <p style={{color:"var(--muted)", fontSize:"0.88rem"}}>
+              Complete Phase 3 to see timing data.
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* Edit Agent tab */}
+      {tab === "edit" && (
+        <EditPanel editAgent={_editAgentRef} apiBase={API} />
+      )}
+
+    </div>
+  );
+
+  return (
+    <>
+      <div className="topbar">
+        <h1>Project <span>Montage</span></h1>
+        <span className="badge">AGENTIC AI</span>
+        {jobId && <span style={{fontSize:"0.75rem", color:"var(--muted)", marginLeft:"auto"}}>
+          Job: {jobId}
+        </span>}
+      </div>
+      <div className="layout">
+        {sidebar}
+        {mainContent}
+      </div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

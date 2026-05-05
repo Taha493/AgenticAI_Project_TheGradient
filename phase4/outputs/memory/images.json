@@ -1,0 +1,10 @@
+{
+  "image_manifest": {
+    "image_paths": [
+      "image_assets\\bartender.png",
+      "image_assets\\detective_kane.png",
+      "image_assets\\mrs._elara_vance.png",
+      "image_assets\\officer_jenkins.png"
+    ]
+  }
+}

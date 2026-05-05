@@ -1,0 +1,138 @@
+{
+  "input_mode": "auto",
+  "script": {
+    "title": "The Drowned City Case",
+    "genre": "Noir Mystery",
+    "scenes": [
+      {
+        "scene_id": 1,
+        "location": "INT. ALBRIGHT PENTHOUSE - NIGHT",
+        "characters": [
+          "Detective Miles Corbin",
+          "Eleanor Albright"
+        ],
+        "dialogue": [
+          {
+            "speaker": "Eleanor Albright",
+            "line": "He just... vanished. One moment he was here, the next, only the rain remained.",
+            "visual_cue": "Eleanor, frail but impeccably dressed, wringing her hands, her eyes red from crying. Rain lashes against the panoramic windows."
+          },
+          {
+            "speaker": "Detective Miles Corbin",
+            "line": "Any enemies, Mrs. Albright? Anyone who might want to see Mr. Albright disappear?",
+            "visual_cue": "Corbin, trench coat slightly damp, surveys the pristine, untouched living room. His gaze lingers on a half-empty whiskey glass on a polished mahogany table."
+          }
+        ],
+        "action_description": "Detective Miles Corbin arrives at the lavish penthouse of the missing financier, Arthur Albright. He interviews Eleanor Albright, Arthur's distraught wife, who can offer little more than tears and bewilderment. The relentless rain outside mirrors the unsettling silence within the apartment. Corbin takes notes, his expression a mask of weary professionalism."
+      },
+      {
+        "scene_id": 2,
+        "location": "INT. THE SINKING SHIP BAR - NIGHT",
+        "characters": [
+          "Detective Miles Corbin",
+          "Slick' Eddie"
+        ],
+        "dialogue": [
+          {
+            "speaker": "Detective Miles Corbin",
+            "line": "I hear you know a few things about Arthur Albright's late-night excursions, Eddie.",
+            "visual_cue": "Corbin leans over the sticky bar, his shadow stretching long in the flickering neon sign's glow from outside, which reads 'OPEN'."
+          },
+          {
+            "speaker": "Slick' Eddie",
+            "line": "Albright? Big man, big pockets. Saw him with... a dame. Always in the shadows. Down by the old cannery, usually.",
+            "visual_cue": "Eddie, a wiry bartender with shifty eyes, nervously wipes the counter with a dirty rag, avoiding Corbin's gaze. Distant thunder rumbles."
+          }
+        ],
+        "action_description": "Following a cryptic tip, Corbin enters 'The Sinking Ship,' a notorious dive bar reeking of stale beer. He confronts 'Slick' Eddie, a known informant, who reluctantly provides a vague lead about Albright frequenting a specific area with a mysterious woman, always under the cloak of night and rain. Corbin presses for more, but Eddie clams up, clearly rattled."
+      },
+      {
+        "scene_id": 3,
+        "location": "EXT. OLD CANNERY DOCKS - NIGHT",
+        "characters": [
+          "Detective Miles Corbin"
+        ],
+        "dialogue": [
+          {
+            "speaker": "Detective Miles Corbin",
+            "line": "What in god's name...",
+            "visual_cue": "Corbin's voice is a hushed whisper, barely audible above the storm. His flashlight beam cuts through the rain and gloom, illuminating something shocking."
+          }
+        ],
+        "action_description": "Corbin drives through the deluge to the old cannery docks, the desolate, wind-swept location Eddie mentioned. He meticulously searches the area, his flashlight beam slicing through the oppressive darkness and rain. Near a derelict warehouse, he discovers a single, high-heeled shoe caked in mud, lying next to a torn piece of silk fabric \u2013 clearly not Albright's, but perhaps belonging to his mysterious companion. The implications deepen the mystery, suggesting another person might be missing or involved in Albright's disappearance. The rain continues to fall relentlessly, washing away potential clues."
+      }
+    ]
+  },
+  "characters": [
+    "detective_miles_corbin",
+    "eleanor_albright",
+    "slick'_eddie"
+  ],
+  "images": [
+    "image_assets\\detective_miles_corbin.png",
+    "image_assets\\eleanor_albright.png",
+    "image_assets\\slick'_eddie.png"
+  ],
+  "status": "complete",
+  "scenes": [
+    {
+      "scene_id": 1,
+      "location": "INT. ALBRIGHT PENTHOUSE - NIGHT",
+      "characters": [
+        "Detective Miles Corbin",
+        "Eleanor Albright"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Eleanor Albright",
+          "line": "He just... vanished. One moment he was here, the next, only the rain remained.",
+          "visual_cue": "Eleanor, frail but impeccably dressed, wringing her hands, her eyes red from crying. Rain lashes against the panoramic windows."
+        },
+        {
+          "speaker": "Detective Miles Corbin",
+          "line": "Any enemies, Mrs. Albright? Anyone who might want to see Mr. Albright disappear?",
+          "visual_cue": "Corbin, trench coat slightly damp, surveys the pristine, untouched living room. His gaze lingers on a half-empty whiskey glass on a polished mahogany table."
+        }
+      ],
+      "action_description": "Detective Miles Corbin arrives at the lavish penthouse of the missing financier, Arthur Albright. He interviews Eleanor Albright, Arthur's distraught wife, who can offer little more than tears and bewilderment. The relentless rain outside mirrors the unsettling silence within the apartment. Corbin takes notes, his expression a mask of weary professionalism."
+    },
+    {
+      "scene_id": 2,
+      "location": "INT. THE SINKING SHIP BAR - NIGHT",
+      "characters": [
+        "Detective Miles Corbin",
+        "Slick' Eddie"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Detective Miles Corbin",
+          "line": "I hear you know a few things about Arthur Albright's late-night excursions, Eddie.",
+          "visual_cue": "Corbin leans over the sticky bar, his shadow stretching long in the flickering neon sign's glow from outside, which reads 'OPEN'."
+        },
+        {
+          "speaker": "Slick' Eddie",
+          "line": "Albright? Big man, big pockets. Saw him with... a dame. Always in the shadows. Down by the old cannery, usually.",
+          "visual_cue": "Eddie, a wiry bartender with shifty eyes, nervously wipes the counter with a dirty rag, avoiding Corbin's gaze. Distant thunder rumbles."
+        }
+      ],
+      "action_description": "Following a cryptic tip, Corbin enters 'The Sinking Ship,' a notorious dive bar reeking of stale beer. He confronts 'Slick' Eddie, a known informant, who reluctantly provides a vague lead about Albright frequenting a specific area with a mysterious woman, always under the cloak of night and rain. Corbin presses for more, but Eddie clams up, clearly rattled."
+    },
+    {
+      "scene_id": 3,
+      "location": "EXT. OLD CANNERY DOCKS - NIGHT",
+      "characters": [
+        "Detective Miles Corbin"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Detective Miles Corbin",
+          "line": "What in god's name...",
+          "visual_cue": "Corbin's voice is a hushed whisper, barely audible above the storm. His flashlight beam cuts through the rain and gloom, illuminating something shocking."
+        }
+      ],
+      "action_description": "Corbin drives through the deluge to the old cannery docks, the desolate, wind-swept location Eddie mentioned. He meticulously searches the area, his flashlight beam slicing through the oppressive darkness and rain. Near a derelict warehouse, he discovers a single, high-heeled shoe caked in mud, lying next to a torn piece of silk fabric \u2013 clearly not Albright's, but perhaps belonging to his mysterious companion. The implications deepen the mystery, suggesting another person might be missing or involved in Albright's disappearance. The rain continues to fall relentlessly, washing away potential clues."
+    }
+  ],
+  "title": "The Drowned City Case",
+  "genre": "Noir Mystery"
+}

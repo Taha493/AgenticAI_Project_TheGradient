@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "scene_id": 1,
+      "location": "INT. ALBRIGHT PENTHOUSE - NIGHT",
+      "start_frame": 0,
+      "end_frame": 192,
+      "start_ms": 0,
+      "end_ms": 8000,
+      "audio_path": "audio_tracks/scene_1_merged.mp3",
+      "mood": "dramatic"
+    },
+    {
+      "scene_id": 2,
+      "location": "INT. THE SINKING SHIP BAR - NIGHT",
+      "start_frame": 192,
+      "end_frame": 552,
+      "start_ms": 8000,
+      "end_ms": 23000,
+      "audio_path": "audio_tracks/scene_2_merged.mp3",
+      "mood": "mysterious"
+    },
+    {
+      "scene_id": 3,
+      "location": "EXT. OLD CANNERY DOCKS - NIGHT",
+      "start_frame": 552,
+      "end_frame": 640,
+      "start_ms": 23000,
+      "end_ms": 26666,
+      "audio_path": "audio_tracks/scene_3_merged.mp3",
+      "mood": "neutral"
+    }
+  ],
+  "total_scenes": 3,
+  "total_duration_ms": 26666
+}

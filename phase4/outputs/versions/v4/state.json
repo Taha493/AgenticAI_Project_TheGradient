@@ -1,0 +1,39 @@
+{
+  "edit_query": "for scene 2, change the voice tone to whispered",
+  "intent": {
+    "intent": "change_voice_tone",
+    "target": "audio",
+    "scope": "scene:2",
+    "parameters": {
+      "tone": "whispered"
+    },
+    "confidence": 0.9
+  },
+  "result": {
+    "target": "audio",
+    "action": "change_voice_tone",
+    "affected_scenes": [
+      {
+        "scene_id": 2,
+        "speaker": "OFFICER JENKINS",
+        "tone": "whispered",
+        "file": "audio_tracks/scene_2_dlg_00_officer_jenkins_edited.mp3",
+        "status": "success"
+      },
+      {
+        "scene_id": 2,
+        "speaker": "DETECTIVE KANE",
+        "tone": "whispered",
+        "file": "audio_tracks/scene_2_dlg_01_detective_kane_edited.mp3",
+        "status": "success"
+      },
+      {
+        "scene_id": 2,
+        "speaker": "DETECTIVE KANE",
+        "tone": "whispered",
+        "file": "audio_tracks/scene_2_dlg_02_detective_kane_edited.mp3",
+        "status": "success"
+      }
+    ]
+  }
+}

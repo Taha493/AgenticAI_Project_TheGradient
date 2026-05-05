@@ -1,0 +1,80 @@
+{
+  "characters": [
+    {
+      "id": "anna_reid",
+      "name": "ANNA REID",
+      "personality_traits": [
+        "Cynical",
+        "Intelligent",
+        "Resilient",
+        "Observant",
+        "Independent",
+        "Determined"
+      ],
+      "appearance": "Anna Reid is a woman in her late 30s, with a sharp, intelligent face that betrays a certain world-weariness. Her dark, shoulder-length hair is usually styled in a practical, slightly messy bob or pulled back, revealing strong cheekbones and a defined jawline. Her eyes, a piercing shade of dark hazel, are her most striking feature \u2013 tired yet acutely observant, constantly scanning her surroundings for clues. She has a lean, athletic build, often dressed in practical, understated neo-noir attire: a dark, tailored trench coat or a sharp blazer over muted shirts, dark trousers, and sturdy but stylish boots. Her demeanor is often reserved, her expression stoic, though a hint of dry wit or a flicker of intense focus can break through her guarded exterior.",
+      "voice_profile": {
+        "tone": "Serious, controlled, with a slightly husky undertone of weariness and sharp intelligence.",
+        "accent": "Standard American",
+        "edge_tts_voice": "en-US-AriaNeural"
+      },
+      "reference_style": "cinematic portrait"
+    },
+    {
+      "id": "detective_rex_blackwood",
+      "name": "DETECTIVE REX BLACKWOOD",
+      "personality_traits": [
+        "Cynical",
+        "World-weary",
+        "Observant",
+        "Persistent",
+        "Jaded",
+        "Pragmatic"
+      ],
+      "appearance": "A man in his late 40s to early 50s, Rex Blackwood possesses a gaunt, angular face etched with the weariness of too many late nights and too many bad cases. His dark, thinning hair is often dishevelled beneath a slightly crumpled fedora. His eyes, a piercing grey, are deep-set and shadowed, constantly scanning, revealing a profound sense of skepticism. He frequently sports a perpetual five-o'clock shadow, adding to his rugged, unkempt charm. His attire is classic noir: a long, dark, slightly damp and stained trench coat often hangs loosely over a rumpled, dark suit, with a loosened tie and collar. His movements are deliberate, a mixture of fatigue and coiled tension. He carries himself with a heavy gravitas, shoulders often slightly slumped, but capable of sudden, decisive action. His hands are large, with prominent knuckles, often holding a cheap cigarette.",
+      "voice_profile": {
+        "tone": "Grave, low-pitched, resonant, with a gravelly edge of fatigue and cynicism. Each word is carefully considered, often delivered slowly.",
+        "accent": "Mid-Atlantic American",
+        "edge_tts_voice": "en-US-GuyNeural"
+      },
+      "reference_style": "cinematic portrait"
+    },
+    {
+      "id": "marcus",
+      "name": "MARCUS",
+      "personality_traits": [
+        "Cynical",
+        "Observant",
+        "Resilient",
+        "Jaded",
+        "Intelligent",
+        "Solitary",
+        "Morally Ambiguous"
+      ],
+      "appearance": "Marcus is a man in his late 30s, with a lean, wiry build that suggests endurance over brute strength. His face is sharp, with a prominent jawline often shadowed by a persistent five o'clock stubble. Deep-set, dark brown eyes, framed by faint bags, are his most striking feature \u2013 they are perpetually observant, yet carry a profound weariness. His dark hair is short, slightly unkempt, and beginning to recede at the temples. He typically wears a charcoal grey trench coat over a slightly rumpled dark suit, with a loosened tie and worn but polished leather shoes, giving him an air of classic, understated grit.",
+      "voice_profile": {
+        "tone": "Serious, calm, slightly gravelly, often laced with subtle sarcasm or weariness",
+        "accent": "American, neutral with a subtle urban edge",
+        "edge_tts_voice": "en-US-GuyNeural"
+      },
+      "reference_style": "cinematic portrait"
+    },
+    {
+      "id": "officer_miller",
+      "name": "OFFICER MILLER",
+      "personality_traits": [
+        "Jaded",
+        "Observant",
+        "Pragmatic",
+        "Resilient",
+        "Slightly cynical"
+      ],
+      "appearance": "Officer Miller is a woman in her late 30s, early 40s, with a lean and capable build. Her dark, practical hair is often pulled back severely or cut into a no-nonsense bob, frequently damp from the pervasive city rain. Deep-set, intelligent eyes, a shade of dark hazel or brown, are framed by subtle fatigue lines, betraying years of street experience and late nights. Her jawline is firm, and her expression is usually a mix of weariness and astute watchfulness. She wears a standard, slightly rumpled police uniform, often layered with a practical, dark, water-resistant trench coat that seems to absorb the city's grim atmosphere. Her overall look is professional but undeniably worn, reflecting the constant grind of the neo-noir metropolis.",
+      "voice_profile": {
+        "tone": "Low, steady, authoritative, with a touch of world-weariness",
+        "accent": "Standard American",
+        "edge_tts_voice": "en-US-AriaNeural"
+      },
+      "reference_style": "cinematic portrait"
+    }
+  ]
+}

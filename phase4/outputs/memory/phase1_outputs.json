@@ -1,0 +1,6 @@
+{
+  "manifest": {
+    "manifest_path": "outputs\\scene_manifest.json",
+    "char_db_path": "outputs\\character_db.json"
+  }
+}
